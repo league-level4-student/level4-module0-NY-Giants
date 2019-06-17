@@ -101,7 +101,11 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		// 7. iterate through cells and fill in the livingNeighbors array
 		// . using the getLivingNeighbors method.
 		int[][] livingNeighbors = new int[cellsPerRow][cellsPerRow];
-
+		for (int i = 0; i < conwayglife.length; i++) {
+			for (int j = 0; j < conwayglife[i].length; j++) {
+			livingNeighbors[i][j] = getLivingNeighbors(i, j);	
+			}
+			}
 		// 8. check if each cell should live or die
 
 		repaint();
