@@ -1,4 +1,4 @@
-ipackage _03_Conways_Game_of_Life;
+package _03_Conways_Game_of_Life;
 import java.awt.Color;
 import java.awt.Graphics;
 
