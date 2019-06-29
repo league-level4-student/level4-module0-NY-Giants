@@ -117,6 +117,7 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 	// living neighbors there are of the
 	// cell identified by x and y
 	public int getLivingNeighbors(int x, int y) {
+		
 		return 0;
 	}
 
@@ -142,7 +143,7 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		// 10. Use e.getX() and e.getY() to determine
 		// which cell is clicked. Then toggle
 		// the isAlive variable for that cell.
-
+		//conwayglife[e.getX()/cellSize][e.getY()/cellSize].isAlive =
 		repaint();
 	}
 
