@@ -31,10 +31,10 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		this.cellsPerRow = cpr;
 
 		// 2. Calculate the cell size.
-
+		cellSize = w/cellsPerRow;
 		// 3. Initialize the cell array to the appropriate size.
 		
-		conwayglife = new Cell[500][500];
+		conwayglife = new Cell[w][h];
 		
 		// 3. Iterate through the array and initialize each cell.
 		// Don't forget to consider the cell's dimensions when
@@ -102,14 +102,17 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		// . using the getLivingNeighbors method.
 		int[][] livingNeighbors = new int[cellsPerRow][cellsPerRow];
 		for (int i = 0; i < conwayglife.length; i++) {
-			for (int j = 0; j < conwayglife[i].length; j++) {
+			for (int j = 0; j < conwayglife.length; j++) {
 			livingNeighbors[i][j] = getLivingNeighbors(i, j);	
-			conwayglife[i][j].liveOrDie(getLivingNeighbors(conwayglife[i][j].getX(), conwayglife[i][j].getY()));
+			
 			}
 			}
 		// 8. check if each cell should live or die
-		
-		repaint();
+		for (int i = 0; i < conwayglife.length; i++) {
+			for (int j = 0; j < conwayglife[i].length; j++) {
+		conwayglife[i][j].liveOrDie(livingNeighbors[i][j]);
+			}
+		}
 	}
 
 	// 9. Complete the method.
@@ -117,7 +120,7 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 	// living neighbors there are of the
 	// cell identified by x and y
 	public int getLivingNeighbors(int x, int y) {
-		
+	
 		return 0;
 	}
 

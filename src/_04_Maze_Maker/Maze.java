@@ -1,9 +1,11 @@
 package _04_Maze_Maker;
 import java.awt.Graphics;
 
+import _03_Conways_Game_of_Life.Cell;
+
 public class Maze {
 	//1. Create a 2D array of cells. Don't initialize it.
-
+	Cell[][] mazearray;
 	private int width;
 	private int height;
 
