@@ -34,7 +34,7 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		cellSize = w/cellsPerRow;
 		// 3. Initialize the cell array to the appropriate size.
 		
-		conwayglife = new Cell[w][h];
+		conwayglife = new Cell[cellsPerRow][cellsPerRow];
 		
 		// 3. Iterate through the array and initialize each cell.
 		// Don't forget to consider the cell's dimensions when
@@ -90,6 +90,7 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 			for (int j = 0; j < conwayglife[i].length; j++) {
 				g.setColor(Color.BLACK);
 				g.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
+				conwayglife[i][j].draw(g);
 			}
 		}
 		// draws grid
@@ -101,8 +102,8 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		// 7. iterate through cells and fill in the livingNeighbors array
 		// . using the getLivingNeighbors method.
 		int[][] livingNeighbors = new int[cellsPerRow][cellsPerRow];
-		for (int i = 0; i < conwayglife.length; i++) {
-			for (int j = 0; j < conwayglife.length; j++) {
+		for (int i = 0; i < livingNeighbors.length; i++) {
+			for (int j = 0; j < livingNeighbors[i].length; j++) {
 			livingNeighbors[i][j] = getLivingNeighbors(i, j);	
 			
 			}
@@ -114,13 +115,20 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 			}
 		}
 	}
+	/*
+	 * 1. Any live cell with fewer than two live nieghbours dies, as if caused by underpopulation.
+	 * 2. Any live cell with two or three live neighbours lives on to the next generation.
+	 * 3. Any live cell with more than three live neighbours dies, as if by overpopulation.
+	 * 4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+	 * (source: Wikipedia)
+	 * */
 
 	// 9. Complete the method.
 	// It returns an int of 8 or less based on how many
 	// living neighbors there are of the
 	// cell identified by x and y
 	public int getLivingNeighbors(int x, int y) {
-	
+		
 		return 0;
 	}
 
