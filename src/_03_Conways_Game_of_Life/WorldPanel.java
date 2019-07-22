@@ -89,7 +89,7 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		for (int i = 0; i < conwayglife.length; i++) {
 			for (int j = 0; j < conwayglife[i].length; j++) {
 				g.setColor(Color.BLACK);
-				g.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
+				g.drawRect(cellSize, , conwayglife[i] - 1, getHeight() - 1);
 				conwayglife[i][j].draw(g);
 			}
 		}
