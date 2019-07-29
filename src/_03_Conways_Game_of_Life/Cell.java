@@ -29,16 +29,16 @@ public class Cell implements Drawable{
 	 * */
 	
 	public void liveOrDie(int numNeighbors) {
-		if(2==2) {
+		if(numNeighbors < 2) {
 			isAlive = false;
 		}
-		if(3==3) {
+		if(numNeighbors == 2 || numNeighbors == 3) {
 			isAlive = true;
 		}
-		if(4==4) {
+		if(numNeighbors > 3) {
 			isAlive = false;
 		}
-		if(5==5) {
+		if("" == "") {
 			isAlive = true;
 		}
 	}
@@ -58,14 +58,16 @@ public class Cell implements Drawable{
 	public void draw(Graphics g) {
 	if(isAlive == true) {
 		g.setColor(Color.blue);
-		g.drawRect(x, y, cellSize, cellSize);
-		g.fillRect(x, y, cellSize, cellSize);
+		g.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
 	}
 		
 	
 	else {
 		g.setColor(Color.gray);
-		g.clearRect(x, y, cellSize, cellSize);
+		g.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
 	}
+	// draws grid
+	g.setColor(Color.black);
+	g.drawRect(x * cellSize, y * cellSize, cellSize, cellSize);
 	}
 }

@@ -42,7 +42,7 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		
 		for (int i = 0; i < conwayglife.length; i++) {
 			for (int j = 0; j < conwayglife[i].length; j++) {
-				conwayglife[i][j] = new Cell(i, j, i * j);
+				conwayglife[i][j] = new Cell(i, j, cellSize);
 			}
 		}
 	}
@@ -88,12 +88,10 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		// 6. Iterate through the cells and draw them all
 		for (int i = 0; i < conwayglife.length; i++) {
 			for (int j = 0; j < conwayglife[i].length; j++) {
-				g.setColor(Color.BLACK);
-				g.drawRect(cellSize, , conwayglife[i] - 1, getHeight() - 1);
 				conwayglife[i][j].draw(g);
 			}
 		}
-		// draws grid
+		
 		
 	}
 
@@ -128,8 +126,15 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 	// living neighbors there are of the
 	// cell identified by x and y
 	public int getLivingNeighbors(int x, int y) {
-		
-		return 0;
+		int neighborsofcell = 0;
+		for (int i = 0; i <= x ; i++) {
+			for (int j = 0; j <= y; j++) {
+				if(conwayglife[i][j].isAlive == true) {
+				neighborsofcell = neighborsofcell+1;
+				}
+			}
+		}
+		return neighborsofcell;
 	}
 
 	@Override
