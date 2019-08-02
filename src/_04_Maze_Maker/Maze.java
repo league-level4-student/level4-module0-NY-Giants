@@ -1,8 +1,6 @@
 package _04_Maze_Maker;
 import java.awt.Graphics;
 
-import _03_Conways_Game_of_Life.Cell;
-
 public class Maze {
 	//1. Create a 2D array of cells. Don't initialize it.
 	Cell[][] mazearray;
@@ -36,6 +34,11 @@ public class Maze {
 	
 	//4b. This method returns the selected cell.
 	public Cell getCell(int x, int y){
+		for (int i = 0; i < mazearray.length; i++) {
+			for (int j = 0; j < mazearray[i].length; j++) {
+				//if()
+			}
+		}
 		return  null;
 	}
 
