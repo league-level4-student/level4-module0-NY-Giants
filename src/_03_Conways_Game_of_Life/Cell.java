@@ -32,13 +32,13 @@ public class Cell implements Drawable{
 		if(numNeighbors < 2) {
 			isAlive = false;
 		}
-		if(numNeighbors == 2 || numNeighbors == 3) {
+		else if(numNeighbors == 2 || numNeighbors == 3) {
 			isAlive = true;
 		}
-		if(numNeighbors > 3) {
+		else if(numNeighbors > 3) {
 			isAlive = false;
 		}
-		if(isAlive == false) {
+		else if(isAlive == false) {
 			if(numNeighbors == 3) {
 			isAlive = true;
 			}

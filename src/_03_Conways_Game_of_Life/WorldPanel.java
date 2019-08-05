@@ -31,15 +31,15 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		this.cellsPerRow = cpr;
 
 		// 2. Calculate the cell size.
-		cellSize = w/cellsPerRow;
+		cellSize = w / cellsPerRow;
 		// 3. Initialize the cell array to the appropriate size.
-		
+
 		conwayglife = new Cell[cellsPerRow][cellsPerRow];
-		
+
 		// 3. Iterate through the array and initialize each cell.
 		// Don't forget to consider the cell's dimensions when
 		// passing in the location.
-		
+
 		for (int i = 0; i < conwayglife.length; i++) {
 			for (int j = 0; j < conwayglife[i].length; j++) {
 				conwayglife[i][j] = new Cell(i, j, cellSize);
@@ -91,8 +91,7 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 				conwayglife[i][j].draw(g);
 			}
 		}
-		
-		
+
 	}
 
 	// advances world one step
@@ -100,41 +99,77 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		// 7. iterate through cells and fill in the livingNeighbors array
 		// . using the getLivingNeighbors method.
 		int[][] livingNeighbors = new int[cellsPerRow][cellsPerRow];
-		for (int i = 0; i < livingNeighbors.length; i++) {
-			for (int j = 0; j < livingNeighbors[i].length; j++) {
-			livingNeighbors[i][j] = getLivingNeighbors(i, j);	
-			
+		for (int i = 0; i < conwayglife.length; i++) {
+			for (int j = 0; j < conwayglife[i].length; j++) {
+				livingNeighbors[i][j] = getLivingNeighbors(i, j);
 			}
-			}
+		}
+
 		// 8. check if each cell should live or die
 		for (int i = 0; i < conwayglife.length; i++) {
 			for (int j = 0; j < conwayglife[i].length; j++) {
-		conwayglife[i][j].liveOrDie(livingNeighbors[i][j]);
+				conwayglife[i][j].liveOrDie(livingNeighbors[i][j]);
 			}
 		}
 	}
 	/*
-	 * 1. Any live cell with fewer than two live nieghbours dies, as if caused by underpopulation.
-	 * 2. Any live cell with two or three live neighbours lives on to the next generation.
-	 * 3. Any live cell with more than three live neighbours dies, as if by overpopulation.
-	 * 4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
-	 * (source: Wikipedia)
-	 * */
+	 * 1. Any live cell with fewer than two live nieghbours dies, as if caused by
+	 * underpopulation. 2. Any live cell with two or three live neighbours lives on
+	 * to the next generation. 3. Any live cell with more than three live neighbours
+	 * dies, as if by overpopulation. 4. Any dead cell with exactly three live
+	 * neighbours becomes a live cell, as if by reproduction. (source: Wikipedia)
+	 */
 
 	// 9. Complete the method.
 	// It returns an int of 8 or less based on how many
 	// living neighbors there are of the
 	// cell identified by x and y
 	public int getLivingNeighbors(int x, int y) {
-		int neighborsofcell = 0;
-		for (int i = 0; i <= x ; i++) {
-			for (int j = 0; j <= y; j++) {
-				if(conwayglife[i][j].isAlive == true) {
-				neighborsofcell = neighborsofcell+1;
-				}
-			}
+//		int neighborsofcell = 0;
+//		for (int i = x - 1; i <= x + 1; i++) {
+//			for (int j = y - 1; j <= y + 1; j++) {
+//				if (i != x && j != y) {
+//					if (i >= 0 && i < cellsPerRow && j >= 0 && j < cellsPerRow) {
+//
+//						if (conwayglife[i][j].isAlive == true) {
+//							neighborsofcell += 1;
+//
+//						}
+//					}
+//				}
+//			}
+//		}
+//		System.out.println(neighborsofcell);
+//		return neighborsofcell;
+int livingNeighbors = 0;
+		
+		if(x != 0) {
+			if(conwayglife[x - 1][y].isAlive) livingNeighbors++;
 		}
-		return neighborsofcell;
+		
+		if(x != cellsPerRow - 1) {
+			if(conwayglife[x + 1][y].isAlive) livingNeighbors++;
+		}
+		if(y != 0) {
+			if(conwayglife[x][y - 1].isAlive) livingNeighbors++;
+		}
+		if(y != cellsPerRow - 1) {
+			if(conwayglife[x][y + 1].isAlive) livingNeighbors++;
+		}
+		if(x != 0 && y != 0) {
+			if(conwayglife[x - 1][y - 1].isAlive) livingNeighbors++;
+		}
+		if(x != cellsPerRow - 1 && y != cellsPerRow - 1) {
+			if(conwayglife[x + 1][y + 1].isAlive) livingNeighbors++;
+		}
+		if(x != 0 && y != cellsPerRow - 1) {
+			if(conwayglife[x - 1][y + 1].isAlive) livingNeighbors++;
+		}
+		if(x != cellsPerRow - 1 && y != 0) {
+			if(conwayglife[x + 1][y - 1].isAlive) livingNeighbors++;
+		}
+		System.out.println(livingNeighbors);
+		return livingNeighbors;
 	}
 
 	@Override
@@ -159,7 +194,8 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		// 10. Use e.getX() and e.getY() to determine
 		// which cell is clicked. Then toggle
 		// the isAlive variable for that cell.
-		conwayglife[e.getX()/cellSize][e.getY()/cellSize].isAlive = !conwayglife[e.getX()/cellSize][e.getY()/cellSize].isAlive;
+		conwayglife[e.getX() / cellSize][e.getY()
+				/ cellSize].isAlive = !conwayglife[e.getX() / cellSize][e.getY() / cellSize].isAlive;
 		repaint();
 	}
 
