@@ -99,18 +99,19 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 		// 7. iterate through cells and fill in the livingNeighbors array
 		// . using the getLivingNeighbors method.
 		int[][] livingNeighbors = new int[cellsPerRow][cellsPerRow];
-		for (int i = 0; i < conwayglife.length; i++) {
-			for (int j = 0; j < conwayglife[i].length; j++) {
+		for (int i = 0; i < livingNeighbors.length; i++) {
+			for (int j = 0; j < livingNeighbors[i].length; j++) {
 				livingNeighbors[i][j] = getLivingNeighbors(i, j);
 			}
 		}
 
 		// 8. check if each cell should live or die
-		for (int i = 0; i < conwayglife.length; i++) {
-			for (int j = 0; j < conwayglife[i].length; j++) {
-				conwayglife[i][j].liveOrDie(livingNeighbors[i][j]);
+		for (int a = 0; a < conwayglife.length; a++) {
+			for (int b = 0; b < conwayglife[a].length; b++) {
+				conwayglife[a][b].liveOrDie(livingNeighbors[a][b]);
 			}
 		}
+		repaint();
 	}
 	/*
 	 * 1. Any live cell with fewer than two live nieghbours dies, as if caused by
@@ -168,7 +169,6 @@ int livingNeighbors = 0;
 		if(x != cellsPerRow - 1 && y != 0) {
 			if(conwayglife[x + 1][y - 1].isAlive) livingNeighbors++;
 		}
-		System.out.println(livingNeighbors);
 		return livingNeighbors;
 	}
 
