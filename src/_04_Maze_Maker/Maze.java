@@ -36,10 +36,10 @@ public class Maze {
 	public Cell getCell(int x, int y){
 		for (int i = 0; i < mazearray.length; i++) {
 			for (int j = 0; j < mazearray[i].length; j++) {
-				//if()
+				
 			}
 		}
-		return  null;
+		return  mazearray;
 	}
 
 	public int getWidth() {
