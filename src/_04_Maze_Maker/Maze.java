@@ -39,7 +39,7 @@ public class Maze {
 				
 			}
 		}
-		return  mazearray;
+		return  null;
 	}
 
 	public int getWidth() {
